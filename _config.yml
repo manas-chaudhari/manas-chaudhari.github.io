@@ -12,3 +12,5 @@ github_username:  manas-chaudhari
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM

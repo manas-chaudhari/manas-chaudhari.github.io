@@ -7,6 +7,7 @@ RxJava and Android Data Binding both provide mechanisms for subscribing for chan
 
 # Before Data Binding
 Before data binding, a convenient way for writing View Models was
+
 ```
 class CartModel {
   final Observable<Float> totalAmount; // Lets say this gets updated through a source that we don't care about
@@ -22,6 +23,7 @@ class CartViewModel {
 ```
 
 The view (which could be an Activity/Fragment or a custom widget, but that's not the point), would look like:
+
 ```
 class CartView {
   TextView totalAmountTextView;
@@ -43,6 +45,7 @@ class CartView {
 # With Data binding
 Databinding allows you to bind object fields to almost _any_ property of a view through XML, which means no need to call setter methods like `setText()`. Instead of calling these methods, we can bind the `text` property to a field of view model.
 This can be achieved as follows:
+
 ```
 cart.xml
 
@@ -65,6 +68,7 @@ This is all fine except that databinding expects that `CartViewModel` must satis
 4. _there are other ways, which aren't required in this context._
 
 In the first two options, in order to make `totalAmountText` changes appear on the view, we'll need to make `CartViewModel` extend `databinding.BaseObservable` and invoke `notifyPropertyChanged(BR.totalAmountText)` whenever it changes. However, this adds boilerplate in the View Model code as we'll transition from
+
 ```
 class CartViewModel {
   final Observable<String> totalAmountText;
@@ -75,6 +79,7 @@ class CartViewModel {
 }
 ```
 to
+
 ```
 class CartViewModel {
 
@@ -94,6 +99,7 @@ class CartViewModel {
 ```
 
 Boilerplate is obviously undesirable. This brings us to option 3 i.e. `ObservableField`. `ObservableField` and `rx.Observable` are very similar in the sense that they allow subscribing for change. We can extend `ObservableField` to add a constructor which takes `Observable` as an argument.
+
 ```
 class RxObservableField<T> extends ObservableField<T> {
   public RxObservableField(Observable<T> source) {
@@ -103,6 +109,7 @@ class RxObservableField<T> extends ObservableField<T> {
 ```
 
 With `RxObservableField`, our view model becomes very neat.
+
 ```
 class CartViewModel {
   final RxObservableField<String> totalAmountText;
