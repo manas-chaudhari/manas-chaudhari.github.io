@@ -5,10 +5,10 @@ date: "2016-01-09 20:23"
 ---
 RxJava and Android Data Binding both provide mechanisms for subscribing for changes. In many discussions, I find people recommending one against the other. However, I found that using Data Binding and RxJava works quite well.
 
-# Before Data Binding
+## Before Data Binding
 Before data binding, a convenient way for writing View Models was
 
-```
+```java
 class CartModel {
   final Observable<Float> totalAmount; // Lets say this gets updated through a source that we don't care about
 }
@@ -24,7 +24,7 @@ class CartViewModel {
 
 The view (which could be an Activity/Fragment or a custom widget, but that's not the point), would look like:
 
-```
+```java
 class CartView {
   TextView totalAmountTextView;
 
@@ -42,11 +42,11 @@ class CartView {
 }
 ```
 
-# With Data binding
+## With Data binding
 Databinding allows you to bind object fields to almost _any_ property of a view through XML, which means no need to call setter methods like `setText()`. Instead of calling these methods, we can bind the `text` property to a field of view model.
 This can be achieved as follows:
 
-```
+```xml
 cart.xml
 
 ...
@@ -69,7 +69,7 @@ This is all fine except that databinding expects that `CartViewModel` must satis
 
 In the first two options, in order to make `totalAmountText` changes appear on the view, we'll need to make `CartViewModel` extend `databinding.BaseObservable` and invoke `notifyPropertyChanged(BR.totalAmountText)` whenever it changes. However, this adds boilerplate in the View Model code as we'll transition from
 
-```
+```java
 class CartViewModel {
   final Observable<String> totalAmountText;
 
@@ -80,7 +80,7 @@ class CartViewModel {
 ```
 to
 
-```
+```java
 class CartViewModel {
 
   CartViewModel(CartModel cartModel) {
@@ -100,7 +100,7 @@ class CartViewModel {
 
 Boilerplate is obviously undesirable. This brings us to option 3 i.e. `ObservableField`. `ObservableField` and `rx.Observable` are very similar in the sense that they allow subscribing for change. We can extend `ObservableField` to add a constructor which takes `Observable` as an argument.
 
-```
+```java
 class RxObservableField<T> extends ObservableField<T> {
   public RxObservableField(Observable<T> source) {
     source.subscribe { value -> set(value) };
@@ -110,7 +110,7 @@ class RxObservableField<T> extends ObservableField<T> {
 
 With `RxObservableField`, our view model becomes very neat.
 
-```
+```java
 class CartViewModel {
   final RxObservableField<String> totalAmountText;
 
@@ -124,7 +124,7 @@ This implementation of `RxObservableField` is very basic. Few things need to be 
 1. Memory Leaks
 2. Closing subscriptions
 
-# What's next?
+## What's next?
 1. As `RxObservableField` internally subscribes to an observable, this subscription should be closed when the view gets destroyed.
 2. When `subscribe` method is called, the reference of `RxObservableField` instance goes to the source `Observable`. This might cause a leak.
 3. `ObservableField` also allows consumers to set inner value. Thus, its more similar to a `Subject`. This would be useful to capture user input, for example in `EditText`. However, as data binding doesn't exactly support two way binding, some more work is required on that front.
