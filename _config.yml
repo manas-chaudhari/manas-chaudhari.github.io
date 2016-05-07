@@ -1,14 +1,27 @@
-# Site settings
-title: Manas Chaudhari
-email: chaudhari.manas@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://manas-chaudhari.github.io" # the base hostname & protocol for your site
-twitter_username: ChaudhariManas
-github_username:  manas-chaudhari
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+# permalink: /:year-:month-:day-:title/
+
+# Setup
+title:               Manas Chaudhari
+tagline:             'TODO'
+description:         'TODO'
+# url:                 http://lanyon.getpoole.com
+baseurl:             ''
+paginate:            5
+
+# About/contact
+author:
+  name:              Manas Chaudhari
+  url:               https://twitter.com/ChaudhariManas
+  email:             chaudhari.manas@gmail.com
+
+# Custom vars
+version:             1.0.0
+
+gems: 		     [jekyll-paginate]
 
 # Build settings
 markdown: kramdown
