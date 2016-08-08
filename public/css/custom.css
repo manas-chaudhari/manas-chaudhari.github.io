@@ -1,0 +1,24 @@
+figure.right {
+  float: right;
+}
+
+figure.left {
+  float: left;
+}
+
+figure.small {
+  max-width: 8rem
+}
+
+figure.medium {
+  max-width: 12rem
+}
+
+figcaption {
+  font-style: italic;
+  font-size: 0.8rem
+}
+
+iframe {
+  max-width: 100%
+}
