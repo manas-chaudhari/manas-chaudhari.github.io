@@ -1,0 +1,15 @@
+---
+layout: page
+title: Experience
+---
+
+{% assign projects = (site.projects | sort: 'date' | reverse) %}
+{% for project in projects %}
+  {{ '* * *' | markdownify }}
+  <h2 class="post-title">{{ project.title }}</h2>
+  {% include table.html src=project.subtitles %}
+  {{ project.content }}
+  {% assign links = ((project.links | join: ', ' | prepend: '|Links: ')) | split: '|' %}
+  {% include table.html src=links %}
+
+{% endfor %}

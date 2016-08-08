@@ -21,7 +21,7 @@ Being a techie, I was always into things like drones, RC cars. Getting inspired 
 
 Nowadays, in my free time, I am learning about [Aerial Robotics](https://www.coursera.org/learn/robotics-flight/) on Coursera. I am also planning to build a quadcopter to implement the mechanisms taught in the course.
 
-
+<br/>
 
 ## App Development
 {% include image.html src="illusionist.png" align="right" size="small" title="Illusionist allows you to create hybrid images" %}
@@ -29,11 +29,14 @@ I had my first experience of programming in high school. We had courses for c++ 
 
 I like to explore and create new patterns, which allow faster/stable development. I also contribute to open source libraries when I can. I blog about my findings [here](/blog).
 
+<br/>
 
 ## Dance
 Apart from all these technical activities, I like to dance hip-hop. I have attended dance classes for around 5 years. I am part of IITB’s dance club InSync. Check out this playlist for my dance videos.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9DY8VI0hKl8?list=PLah3XX042DX6iQ3rohiRKG7n3rRPS9Ay_" frameborder="0" allowfullscreen></iframe>
+
+<br/>
 
 ## Adventure Sports
 

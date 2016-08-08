@@ -19,6 +19,30 @@ figcaption {
   font-size: 0.8rem
 }
 
+/* Youtube */
+
 iframe {
   max-width: 100%
+}
+
+
+/* Tables */
+table.no-border {
+  border: 0px;
+}
+
+table.no-border tr td {
+  border: 0px;
+  background-color: transparent;
+  padding: 0px;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+table.no-border td.col1 {
+  text-align: left
+}
+
+table.no-border td.col2 {
+  text-align: right
 }

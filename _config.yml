@@ -26,3 +26,8 @@ version:          2.1.0
 
 github:
   repo:           https://github.com/manas-chaudhari/manas-chaudhari.github.io
+
+
+# Collections
+collections:
+- projects
