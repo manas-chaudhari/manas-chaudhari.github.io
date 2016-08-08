@@ -1,29 +1,27 @@
-# Permalinks
-#
-# Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
-# permalink: /:year-:month-:day-:title/
-
-# Setup
-title:               Manas Chaudhari
-tagline:             ''
-description:         ''
-# url:                 http://lanyon.getpoole.com
-baseurl:             ''
-paginate:            5
-
-# About/contact
-author:
-  name:              Manas Chaudhari
-  url:               https://twitter.com/ChaudhariManas
-  email:             chaudhari.manas@gmail.com
-
-# Custom vars
-version:             1.0.0
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
 
 gems: 		     [jekyll-paginate]
 
-# Build settings
-markdown: kramdown
-kramdown:
-  input: GFM
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Manas Chaudhari
+tagline:          ''
+description:      ''
+url:              http://manas-chaudhari.github.io
+baseurl:          /
+
+author:
+  name:           'Manas Chaudhari'
+  url:            https://twitter.com/ChaudhariManas
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/manas-chaudhari/manas-chaudhari.github.io
