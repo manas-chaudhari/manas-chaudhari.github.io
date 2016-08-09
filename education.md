@@ -7,7 +7,8 @@ title: Education
 <br/>
 B.Tech and M.Tech in Energy Science and Engineering  
 Minor in Electrical Engineering  
-at Indian Institute of Technology Bombay  
+Indian Institute of Technology Bombay  
+Dissertation: [Energy Optimal Path Planning for Mobile Robots](/public/docs/Manas-Chaudhari-Thesis.pdf)
 
 **CGPA: 9.04/10**
 
