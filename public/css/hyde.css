@@ -65,7 +65,7 @@ html {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
+    width: 10rem;
     text-align: left;
   }
 }
@@ -80,7 +80,7 @@ html {
   color: #fff;
   margin-top: 0;
   font-family: "Abril Fatface", serif;
-  font-size: 3.00rem;
+  font-size: 1.50rem;
 }
 
 /* Sidebar nav */
@@ -128,15 +128,15 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content-with-sidebar {
-    max-width: 38rem;
-    margin-left: 20rem;
+    max-width: 48rem;
+    margin-left: 12rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content-with-sidebar {
-    margin-left: 22rem;
+    margin-left: 14rem;
     margin-right: 4rem;
   }
 }
