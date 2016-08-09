@@ -4,7 +4,7 @@ title: Software Development
 date: "2014-06-01"
 
 subtitles:
-- "Company: TinyOwl Technology Pvt. Ltd."
+- "Company: TinyOwl/Runnr"
 - "June 2014 – present"
 links:
 - "<a href=\"https://play.google.com/store/apps/details?id=com.flutterbee.tinyowl&hl=en\">android</a>"
