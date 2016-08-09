@@ -1,9 +1,11 @@
 figure.right {
   float: right;
+  margin-right: 0.2rem;
 }
 
 figure.left {
   float: left;
+  margin-left: 0px;
 }
 
 figure.small {
