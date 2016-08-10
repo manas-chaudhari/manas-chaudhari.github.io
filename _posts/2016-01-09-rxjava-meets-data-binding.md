@@ -2,6 +2,9 @@
 layout: post
 title: "RxJava meets Data Binding (Part 1)"
 date: "2016-01-09 20:23"
+excerpt: >
+  Getting values from RxJava's Observables to Views is a problem and often requires boilerplate.
+  We explore how RxJava and Data Binding can be combined to solve this problem. A crude implementation of the `RxObservableField` class is presented.
 ---
 
 > This is Part 1 about combining RxJava and Data Binding. This article presents the first iteration and how this pattern came into existence. [Part 2]({% post_url 2016-08-09-rxjava-meets-data-binding-part-2 %}) provides an improved internal implementation and approach for handling several practical issues.

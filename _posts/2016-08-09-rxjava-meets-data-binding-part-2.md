@@ -4,7 +4,7 @@ title: "RxJava meets Data Binding (Part 2)"
 date: "2016-08-09 20:56"
 ---
 
-[Part 1]({% post_url 2016-01-09-rxjava-meets-data-binding %}) showed how the idea of `RxObservableField` came into place and its benefits. The implementation however was very crude and had critical issues like not cleaning up subscriptions/memory leaks.
+[Part 1]({% post_url 2016-01-09-rxjava-meets-data-binding %}) showed the origin of `RxObservableField` and its benefits. This part improves the implementation to solve critical issues like cleaning up of subscriptions/memory leaks.
 
 ```java
 class RxObservableField<T> extends ObservableField<T> {
@@ -108,6 +108,11 @@ Of course, if inputText is required to be updated based on some other interactio
 In order to ensure consistency between the field value and observable source, we'll have to disable the setter causing the field to behave like a `ReadOnlyField`. Hence, it would be appropriate to rename `RxObservableField` to `ReadOnlyField`.
 
 
+## Memory Leaks
+
+In order to prevent memory leaks, it is necessary to clean up subscriptions. Because subscription is retained only when a view is observing the field, ensuring that view removes observer will ensure that subscription will not get retained. We can depend on the Data Binding layer for this.
+
+Callbacks added to `ObservableField`, store weak reference to `ViewDataBinding`. As a result, uncleaned callbacks will not prevent `ViewDataBinding` from getting garbage collected. Also, `ViewDataBinding` removes all listeners before getting deallocated in `finalize()` method. Hence, on next GC after View is destroyed, all subscriptions in `ReadOnlyField` would also get removed.
 
 ## Source
 
