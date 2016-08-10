@@ -1,8 +1,11 @@
 ---
 layout: post
-title: "RxJava meets Data Binding"
+title: "RxJava meets Data Binding (Part 1)"
 date: "2016-01-09 20:23"
 ---
+
+> This is Part 1 about combining RxJava and Data Binding. This article presents the first iteration and how this pattern came into existence. [Part 2]({% post_url 2016-08-09-rxjava-meets-data-binding-part-2 %}) provides an improved internal implementation and approach for handling several practical issues.
+
 RxJava and Android Data Binding both provide mechanisms for subscribing for changes. In many discussions, I find people recommending one against the other. However, I found that using Data Binding and RxJava works quite well.
 
 ## Before Data Binding
