@@ -2,6 +2,8 @@
 layout: "post"
 title: "RxJava meets Data Binding (Part 2)"
 date: "2016-08-09 20:56"
+tags:
+- android-mvvm
 ---
 
 [Part 1]({% post_url 2016-01-09-rxjava-meets-data-binding %}) showed the origin of `RxObservableField` and its benefits. This part improves the implementation to solve critical issues like cleaning up of subscriptions/memory leaks.

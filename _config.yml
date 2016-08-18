@@ -18,7 +18,7 @@ author:
   name:           'Manas Chaudhari'
   url:            https://twitter.com/ChaudhariManas
 
-paginate:         2
+paginate:         10
 paginate_path:    "/blog/page:num/"
 
 # Custom vars

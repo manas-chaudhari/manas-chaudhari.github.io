@@ -2,6 +2,8 @@
 layout: "post"
 title: "XOR over a range in O(1)"
 date: "2016-08-12 22:14"
+tags:
+- algorithms
 ---
 
 To calculate XOR of integers (i...j), basic approach is to iterate over the range. Intuition says that there must be some pattern involved as numbers are consecutive and turns out there is.
