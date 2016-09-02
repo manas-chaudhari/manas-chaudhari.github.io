@@ -260,39 +260,37 @@ You should see the result value change as you update the inputs.
 ### RadioGroup Binding
 Two Way binding is supported for `android:checkedButton` attribute of `RadioGroup`. However, the type is `int` as `RadioGroup` provides the `id` of the selected view inside. We need a mechanism with converts `int` to `Operation` and back. This can be done with the help of `InverseBindingAdapter` and a `BindingConversion`. First, lets add ids to all the RadioButtons in `activity_calculator.xml`:
 
-```xml
+```diff
 <RadioGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:checkedButton="@={vm.operation}">
++   android:checkedButton="@={vm.operation}">
 
     <RadioButton
-        android:id="@+id/radio_add"
++       android:id="@+id/radio_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+" />
 
     <RadioButton
-        android:id="@+id/radio_subtract"
++       android:id="@+id/radio_subtract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-" />
 
     <RadioButton
-        android:id="@+id/radio_multiply"
++       android:id="@+id/radio_multiply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*" />
 
     <RadioButton
-        android:id="@+id/radio_divide"
++       android:id="@+id/radio_divide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/" />
 </RadioGroup>
 ```
-
-<!-- {% gist manas-chaudhari/bd0719b1c5da2b0977fe340426e9813a %} -->
 
 Create a class `BindingAdapters.java` to implement the conversion:
 
