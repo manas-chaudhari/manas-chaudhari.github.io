@@ -2,6 +2,7 @@
 layout: "post"
 title: "RxJava meets Data Binding (Part 3)"
 date: "2016-08-19 09:01"
+comments: true
 tags:
 - android-mvvm
 ---
