@@ -14,6 +14,7 @@ There are several frontend architectures, MVP being popular in Android. However,
 [Data Binding Library](https://developer.android.com/topic/libraries/data-binding/index.html) provides an easy way to observe for changes from a source and update view properties.
 
 MVVM architecture consists of three components:
+
 1. Model
 1. View
 1. ViewModel
@@ -21,6 +22,7 @@ MVVM architecture consists of three components:
 The core idea is that ViewModel represents the state of the View and View observes for changes in ViewModel and updates itself. Thus, observing for changes is a key requirement for MVVM and data binding fulfills it. This makes MVVM an ideal candidate when working with Data Binding.
 
 Key Features:
+
 - ViewModels are unaware about Views, thus a single ViewModel can be shared between multiple Views
 - Because ViewModel capture the state of Views, unit testing ViewModels implies testing UI content
   - Android Bonus: Because ViewModels are plain Java objects, they can be tested on JVM (which is much faster)
