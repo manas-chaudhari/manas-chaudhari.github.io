@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RxJava meets Data Binding (Part 1)"
+title: "RxJava meets Data Binding I - Origins"
 date: "2016-01-09 20:23"
 excerpt: >
   Getting values from RxJava's Observables to Views is a problem and often requires boilerplate.

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "RxJava meets Data Binding (Part 2)"
+title: "RxJava meets Data Binding II - ReadOnlyField"
 date: "2016-08-09 20:56"
 tags:
 - android-mvvm
