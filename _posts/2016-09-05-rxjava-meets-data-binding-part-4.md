@@ -7,7 +7,7 @@ tags:
 - android-mvvm
 ---
 
-A subscription free way of using RxJava. To demonstrate the effectiveness, I'll transform an existing sample code into this pattern.
+A subscription free way of using RxJava.
 
 
 RxJava provides an easy way to model changing data as an `Observable`. To consume the data, it is required to `subscribe` to the `Observable`, which generates a `Subscription` which needs to be unsubscribed later (in most cases) to prevent memory leaks. As long as we are manipulating Observables (Rx world), the code is functional and all is well. However, subscribing and unsubscribing operations which are dependent on Android lifecycle, need to be done in the imperative world and result in boilerplate code.

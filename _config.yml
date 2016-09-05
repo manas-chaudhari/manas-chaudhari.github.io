@@ -2,7 +2,7 @@
 markdown:         kramdown
 highlighter:      rouge
 
-gems: 		     [jekyll-paginate, jekyll-gist]
+gems: 		     [jekyll-paginate, jekyll-gist, jekyll-seo-tag]
 
 # Permalinks
 permalink:        /blog/:categories/:year/:month/:day/:title/
@@ -34,3 +34,7 @@ collections:
 
 # Google Analytics
 google_analytics: UA-82758741-1
+
+# # SEO
+# twitter:
+#   username: ChaudhariManas
