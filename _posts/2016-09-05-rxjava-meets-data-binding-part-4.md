@@ -2,6 +2,7 @@
 layout: "post"
 title: "RxJava meets Data Binding IV - Farewell Subscriptions"
 date: "2016-09-05 01:00"
+comments: true
 tags:
 - android-mvvm
 ---
