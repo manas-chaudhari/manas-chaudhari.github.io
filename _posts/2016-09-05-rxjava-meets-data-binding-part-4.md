@@ -9,18 +9,19 @@ tags:
 A subscription free way of using RxJava. To demonstrate the effectiveness, I'll transform an existing sample code into this pattern.
 
 
-RxJava provides an easy way to model changing data as an `Observable`. To consume the data, it is required to `subscribe` to the `Observable`, which generates subscriptions. As long as we are in the Rx world, the code is functional and all is well. However, subscribing and unsubscribing operations which are dependent on Android lifecycle, need to be done in the imperative world and often results in boilerplate code.
+RxJava provides an easy way to model changing data as an `Observable`. To consume the data, it is required to `subscribe` to the `Observable`, which generates a `Subscription` which needs to be unsubscribed later (in most cases) to prevent memory leaks. As long as we are manipulating Observables (Rx world), the code is functional and all is well. However, subscribing and unsubscribing operations which are dependent on Android lifecycle, need to be done in the imperative world and result in boilerplate code.
 
-Most existing techniques recommend subscribing to the Observable and cleaning up the subscription object in `onDestroy`. [RxLifecycle](https://github.com/trello/RxLifecycle) library provides a convenient way to implement this by making use of `takeUntil` operator. However, this approach still requires you to use `.compose(RxLifecycle.bindUntilEvent(lifecycle, ActivityEvent.DESTROY))` on each observable before subscription. I would like to take this further by eliminating this too.
+Most existing techniques recommend subscribing to the Observable and cleaning up the subscription object in `onDestroy`. [RxLifecycle](https://github.com/trello/RxLifecycle) library provides a convenient way to implement this by making use of `takeUntil` operator. However, this approach still requires you to use `.compose(RxLifecycle.bindUntilEvent(lifecycle, ActivityEvent.DESTROY))` on each observable before subscription. I would like to improve this by eliminating the subscription itself.
 
 
 ### Starter Code
 
-Chris Arriola recently wrote a [tutorial to RxJava](https://www.toptal.com/android/functional-reactive-android-rxjava) in which he built an example app which fetches data from Github API and displays in a ListView. I have taken his code as the starting point. Initial code is available [here](https://github.com/manas-chaudhari/GitHubRxJava/tree/solution)
+Chris Arriola recently wrote an [Introduction to RxJava](https://www.toptal.com/android/functional-reactive-android-rxjava) in which he builds an example app which fetches data from Github API and displays in a ListView. I have taken his code as the starting point. Initial code is available [here](https://github.com/manas-chaudhari/GitHubRxJava/tree/solution)
 
 ### Setup library
+I'll be using my [Android MVVM](https://github.com/manas-chaudhari/android-mvvm) which provides tools to implement MVVM using RxJava and Data Binding.
 
-Add library in dependencies in build.gradle & enable data binding
+In build.gradle, add the dependency & enable data binding
 
 ```groovy
 android {
@@ -55,7 +56,7 @@ public class GithubApplication extends Application {
 
 ### Create ViewModels
 
-Move presentation logic from `MainActivity` to `MainViewModel` and `GithubRepoAdapter` to `GithubRepoVM`.
+Move presentation logic [GithubRepoAdapter](https://github.com/manas-chaudhari/GitHubRxJava/blob/solution/app/src/main/java/com/chrisarriola/githubrxjava/GitHubRepoAdapter.java) to `GithubRepoVM`.
 
 ```java
 public class GithubRepoVM implements ViewModel {
@@ -73,9 +74,11 @@ public class GithubRepoVM implements ViewModel {
 }
 ```
 
-`MainViewModel` can be implemented as follows:
+The logic in [MainActivity](https://github.com/manas-chaudhari/GitHubRxJava/blob/solution/app/src/main/java/com/chrisarriola/githubrxjava/MainActivity.java) uses an imperative style as it subscribes to the observable on click. This can be improved by getting username text & click event as Observables and combining them using [Sample](http://reactivex.io/documentation/operators/sample.html) operator. `MainViewModel` then looks as follows:
 
 ```java
+import static com.manaschaudhari.android_mvvm.FieldUtils.toObservable;
+
 public class MainViewModel implements ViewModel {
     public final Observable<List<ViewModel>> repositories;
     public final ObservableField<String> username = new ObservableField<>();
@@ -84,7 +87,7 @@ public class MainViewModel implements ViewModel {
     public MainViewModel() {
         repositories =
                 toObservable(this.username)
-                .sample(onSearchClick)
+                .sample(this.onSearchClick)
                 .flatMap(new Func1<String, Observable<List<ViewModel>>>() {
             @Override
             public Observable<List<ViewModel>> call(String username) {
@@ -107,9 +110,6 @@ public class MainViewModel implements ViewModel {
     }
 }
 ```
-
-I have used the [Sample](http://reactivex.io/documentation/operators/sample.html) operator to get the user name value when search button is clicked.
-
 
 ### Update `item_github_repo.xml` to use Data Binding
 
@@ -286,6 +286,8 @@ public class MainActivity extends MvvmActivity {
     - setting up RecyclerView
 
 Checkout the diff from initial point to final point: [https://github.com/manas-chaudhari/GitHubRxJava/pull/1/files?w=1](https://github.com/manas-chaudhari/GitHubRxJava/pull/1/files?w=1)
+
+The Android MVVM library is available [here](https://github.com/manas-chaudhari/android-mvvm). I highly recommend going through the [README](https://github.com/manas-chaudhari/android-mvvm) to get an idea about what's happening under the hood.
 
 ### Source
 The source is available at:
