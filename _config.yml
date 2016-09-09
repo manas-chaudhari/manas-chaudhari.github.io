@@ -17,6 +17,7 @@ baseurl:          /
 author:
   name:           'Manas Chaudhari'
   url:            https://twitter.com/ChaudhariManas
+  twitter:        ChaudhariManas
 
 paginate:         10
 paginate_path:    "/blog/page:num/"
@@ -36,5 +37,5 @@ collections:
 google_analytics: UA-82758741-1
 
 # # SEO
-# twitter:
-#   username: ChaudhariManas
+twitter:
+  username: ChaudhariManas
