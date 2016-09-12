@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-  compile 'com.manaschaudhari:android-mvvm:0.1.1'
+  compile 'com.manaschaudhari:android-mvvm:0.1.2'
 }
 ```
 
@@ -81,35 +81,35 @@ The logic in [MainActivity](https://github.com/manas-chaudhari/GitHubRxJava/blob
 import static com.manaschaudhari.android_mvvm.FieldUtils.toObservable;
 
 public class MainViewModel implements ViewModel {
-    public final Observable<List<ViewModel>> repositories;
+    public final Observable<List<GithubRepoVM>> repositories;
     public final ObservableField<String> username = new ObservableField<>();
     public final PublishSubject<Void> onSearchClick = PublishSubject.create();
 
     public MainViewModel() {
         repositories =
                 toObservable(this.username)
-                .sample(this.onSearchClick)
-                .flatMap(new Func1<String, Observable<List<ViewModel>>>() {
+                .sample(onSearchClick)
+                .switchMap(new Func1<String, Observable<List<GithubRepoVM>>>() {
             @Override
-            public Observable<List<ViewModel>> call(String username) {
+            public Observable<List<GithubRepoVM>> call(String username) {
                 return GitHubClient.getInstance()
                         .getStarredRepos(username)
-                        .map(new Func1<List<GitHubRepo>, List<ViewModel>>() {
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(new Func1<List<GitHubRepo>, List<GithubRepoVM>>() {
                             @Override
-                            public List<ViewModel> call(List<GitHubRepo> gitHubRepos) {
-                                List<ViewModel> vms = new ArrayList<>();
+                            public List<GithubRepoVM> call(List<GitHubRepo> gitHubRepos) {
+                                List<GithubRepoVM> vms = new ArrayList<>();
                                 for (GitHubRepo repo : gitHubRepos) {
                                     vms.add(new GithubRepoVM(repo));
                                 }
                                 return vms;
                             }
                         });
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
             }
         });
     }
-}
+}}
 ```
 
 ### Update `item_github_repo.xml` to use Data Binding
